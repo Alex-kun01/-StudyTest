@@ -1,0 +1,73 @@
+.box {
+    width: 1000px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title {
+    width: 300px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    font-size: 26px;
+    font-weight: 500;
+}
+
+.item {
+    width: 300px;
+    height: 300px;
+    background-color: pink;
+}
+
+.item .con {
+    width: 100px;
+    height: 100px;
+    background-color: aqua;
+    text-align: center;
+    line-height: 100px;
+    font-weight: 500;
+}
+
+
+/* flex布局 */
+
+.item1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* position布局一 */
+
+.item2 {
+    position: relative;
+}
+
+.item2 .con {
+    position: absolute;
+    /* 一 ：在知道居中元素宽高的情况下可使用*/
+    /* top: calc(50% - 50px);
+    left: calc(50% - 50px); */
+    /* 二：不知道居中元素宽高也可以使用 */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+/* position布局二 */
+
+.item3 {
+    position: relative;
+}
+
+.item3 .con {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}

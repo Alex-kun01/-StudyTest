@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>圣杯模式</title>
+</head>
+
+<body>
+    <script>
+        function Father(firstName, lastName, age) {
+            this.firstName = firstName
+            this.lastName = lastName
+            this.age = age
+        }
+        Father.prototype.lookName = function() {
+            console.log('大家好我叫' + this.firstName + this.lastName + '我今年' + this.age + '岁啦')
+        }
+
+        function Son(firstName, lastName, age, money) {
+            Father.call(this, firstName, lastName, age)
+            this.money = money
+        }
+
+        var father = new Father('蒋', '治坤', 18)
+        inherit(Father, Son)
+        var son = new Son('梅', '市委', 8, 100)
+
+        // 继承 标准圣杯模式
+        function inherit(Father, Son) {
+            // ES6的简便写法
+
+            // 根据father的原型创建对象并赋值给son的原型
+            Son.prototype = Object.create(Father.prototype)
+                // 将son的构造器等于它自己
+            Son.prototype.constructor = Son
+                // 设置son的超类 父类 
+            Son.prototype.uber = Father.prototype
+
+
+            // ES5 之前的写法
+            var Temp = function() {}
+            Temp.prototype = Father.prototype
+            Son.prototype = new Temp()
+            Son.prototype.constructor = Son
+            Son.prototype.uber = Father.prototype
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>防抖与节流</title>
+</head>
+
+<body>
+    <button>加加</button>
+    <script>
+        let btnDom = document.querySelector('button')
+
+        // 防抖函数
+        function debounce(callBack, delay) {
+            var timer = null
+            return function() {
+                if (!timer) {
+                    clearTimeout(timer)
+                } else {
+                    timer = setTimeout(() => {
+                        callBack()
+                    }, delay)
+                }
+            }
+        }
+
+        function mclick() {
+            console.log('我被点击了' + Math.floor(Math.random() * 10))
+        }
+
+        btnDom.addEventListener('click', function() {
+            debounce(mclick, 1000)
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数据劫持Object.defineProperty</title>
+</head>
+
+<body>
+    <div id="container"></div>
+    <script>
+        function observe(target) {
+            const conDom = document.getElementById("container")
+            const props = Object.keys(target)
+            const ob = {}
+            for (let i = 0; i < props.length; i++) {
+                Object.defineProperty(ob, props[i], {
+                    get() {
+                        return target[props[i]]
+                    },
+                    set(newVal) {
+                        target[props[i]] = newVal
+                        render()
+                    }
+                })
+            }
+            render()
+
+            function render() {
+                let html = ""
+                const props = Object.keys(target)
+                props.forEach(item => {
+                    html += `
+                    <p>
+                    <span>${item}: </span>
+                    <span>${target[item]}</span>    
+                    </p>
+                    `
+                })
+                conDom.innerHTML = html
+            }
+            return ob
+        }
+        const target = {
+            name: '蒋治坤',
+            age: 18,
+            height: 175
+        }
+        const obj = observe(target)
+    </script>
+</body>
+
+</html>
