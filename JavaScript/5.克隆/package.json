@@ -1,0 +1,16 @@
+{
+    "name": "clone",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "dev": "webpack --mode=development --watch"
+    },
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "loadsh": "0.0.4",
+        "webpack": "^4.44.1",
+        "webpack-cli": "^3.3.12"
+    }
+}
